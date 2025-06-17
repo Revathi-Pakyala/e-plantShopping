@@ -217,7 +217,8 @@ function ProductList({ onHomeClick }) {
             ]
         }
     ];
-    const styleObj = {
+    
+     const styleObj = {
         backgroundColor: '#4CAF50',
         color: '#fff!important',
         padding: '15px',
@@ -289,31 +290,24 @@ function ProductList({ onHomeClick }) {
                 <div>
                     {plantsArray.map((category, index) => ( // Loop through each category in plantsArray
                     <div className="product-grid" key={index}>
-    <h2 className='plant_heading'>{category.category}</h2>
-    <div className="product-list"> {/* Container for the list of plant cards */}
-      {category.plants.map((plant, plantIndex) => ( // Loop through each plant in the current category
-        <div className="product-card" key={plantIndex}> {/* Unique key for each plant card */}
-          <img 
-            className="product-image" 
-            src={plant.image} // Display the plant image
-            alt={plant.name} // Alt text for accessibility
-          />
-          <div className="product-title">{plant.name}</div> {/* Display plant name */}
-          {/* Display other plant details like description and cost */}
-          <div className="product-cost">{plant.cost}</div> {/* Display plant cost */}
-          <div className="product-description">{plant.description}</div> {/* Display plant description */}
-          {cart.items.some(item => item.name === plant.name) ? 
-            ( <button className="product-button added-to-cart">Added to Cart</button>
-            ) : 
-            ( <button className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
-            )
-        }
+                    <h2 className='plant_heading'>{category.category}</h2>
+                    <div className="product-list"> {/* Container for the list of plant cards */}
+                        {category.plants.map((plant, plantIndex) => ( // Loop through each plant in the current category
+                        <div className="product-card" key={plantIndex}> {/* Unique key for each plant card */}
+                        <h3 className="product-title">{plant.name}</h3> {/* Display plant name */}
+                        <img className="product-image" src={plant.image} alt={plant.name} />
+                        <p className="product-price">{plant.cost}</p> 
+                        <p>{plant.description}</p>
+                        {cart.items.some(item => item.name === plant.name) ? 
+                        ( <button className="product-button added-to-cart">Added to Cart</button>)
+                         : 
+                        ( <button className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>)
+                        }
+                    </div>                           
+            ))}
+            </div>
         </div>
-                                        
-      ))}
-    </div>
-  </div>
-))}
+        ))}
 
                 </div>
             ) : (
